@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,11 +69,17 @@ namespace TrieTernaryTree
             {
                 
                 if (key[i] < p.ch)
+                {
                     p = p.low;
+                }
+                    
 
                           
                 else if (key[i] > p.ch)
-                    p = p.high;
+                {
+                     p = p.high;
+                }
+                   
 
                 else
                 {
@@ -102,11 +108,17 @@ namespace TrieTernaryTree
             {
                 // Search for current character of the key in left subtree
                 if (key[i] < p.ch)
-                    p = p.low;
+                {
+                     p = p.low;
+                }
+                   
 
                 // Search for current character of the key in right subtree           
                 else if (key[i] > p.ch)
-                    p = p.high;
+                {
+                     p = p.high;
+                }
+                   
 
                 else // if (p.ch == key[i])
                 {
@@ -140,22 +152,34 @@ namespace TrieTernaryTree
         private bool Insert(ref Node p, string key, int i, T value)
         {
             if (p == null)
+            {
                 p = new Node(key[i]);
+            }
+                
 
             // Current character of key inserted in left subtree
             if (key[i] < p.ch)
-                return Insert(ref p.low, key, i, value);
+            {
+                 return Insert(ref p.low, key, i, value);
+            }
+               
 
             // Current character of key inserted in right subtree
             else if (key[i] > p.ch)
+            {
                 return Insert(ref p.high, key, i, value);
+            }
+                
 
             else if (i + 1 == key.Length)
             // Key found
             {
                 // But key/value pair already exists
                 if (!p.value.Equals(default(T))) //this means there is already a value at that key, and that is NOT allowed.
+                {
                     return false;
+                }
+                    
                 else
                 {
                     // Place value in node
@@ -183,7 +207,10 @@ namespace TrieTernaryTree
             {
                 // Search for current character of the key in left subtree
                 if (key[i] < p.ch)
+                {
                     p = p.low;
+                }
+                    
 
                 // Search for current character of the key in right subtree           
                 else if (key[i] > p.ch)
@@ -254,13 +281,15 @@ namespace TrieTernaryTree
             }
         }
     }
-
+    //Test Program For Trie C# implementation
     class Program
     {
+        
         static void Main(string[] args)
         {
+            //create a new instance of Trie
             Trie<int> T = new Trie<int>();
-
+            //Add 6 items to Trie
             T.Insert("bag", 10);
             T.Insert("bat", 20);
             T.Insert("cab", 70);
@@ -268,8 +297,8 @@ namespace TrieTernaryTree
             T.Insert("beet", 40);
             T.Insert("abc", 60);
 
-            T.Print();
-            Console.WriteLine(T.Size());
+            T.Print();//print the current contents of trie
+            Console.WriteLine(T.Size());//display the size of Trie
 
             Console.WriteLine(T.Value("abc"));
             Console.WriteLine(T.Value("beet"));
